@@ -2,6 +2,14 @@
 
 This project emulates the tactics, techniques, and procedures (TTPs) of the FIN6 advanced persistent threat (APT) group. FIN6 is known for targeting payment card data in point-of-sale (POS) environments, leveraging techniques such as memory scraping, credential dumping, and exfiltration via DNS tunneling. This emulation focuses on phases 1 and 2 of the FIN6 attack.
 
+## Project Summary
+The FIN6 Adversary Emulation Project is designed to replicate the real-world tactics, techniques, and procedures (TTPs) used by the FIN6 advanced persistent threat (APT) group. This project provides an in-depth, hands-on learning experience in adversary emulation, offering cybersecurity professionals an opportunity to understand and counter advanced threat actions. Through two phases, the project demonstrates a full lifecycle attack targeting payment card data in point-of-sale (POS) systems, covering:
+
+Initial Access and Reconnaissance: Phishing attacks to compromise victims, Active Directory enumeration, and lateral movement.
+Data Collection and Exfiltration: Memory scraping of POS data and exfiltration over DNS, mirroring sophisticated methods used by FIN6.
+Each phase of the emulation aligns with MITRE ATT&CK techniques and leverages tools such as Metasploit, AdFind, and custom-built FrameworkPOS emulators to simulate realistic attack scenarios. This project aims to enhance red team tactics, incident response training, and provide a safe environment for researchers to study FIN6-style attacks in detail.
+
+
 ![Op_Flow](Documentation/OpFlow_Diagram.png)
 
 *Sourced from Center for Threat-Informed Defense’s analysis of FIN6.*
